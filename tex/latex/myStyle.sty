@@ -1,0 +1,10 @@
+\ProvidesPackage{myMacros}
+\author{Jialin Xin}
+
+\RequirePackage{hyperref} % make citations, TOC entries, etc. into hyperlinks
+\@ifpackageloaded{cleveref}{}{\RequirePackage[capitalize]{cleveref}}
+\Crefname{section}{$\mathsection$}{$\mathsection\mathsection$}
+\Crefname{equation}{}{}
+% \Crefname{enumerate}{}{}
+
+\endinput
