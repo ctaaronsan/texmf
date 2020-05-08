@@ -1,0 +1,15 @@
+%%%% Some useful examples from the web
+
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\begin{document}
+% longer equal sign
+% `\joinrel' is defined as `\mathrel{\mkern-3mu}'
+% see https://tex.stackexchange.com/a/35406
+\newcommand{\eqdef}{\overset{\mathrm{def}}{=\joinrel=}}
+\[
+  x \eqdef y
+\]
+\end{document}
