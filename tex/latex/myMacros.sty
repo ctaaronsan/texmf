@@ -21,14 +21,10 @@
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Hom}{Hom}
 
-% extensible equal sign
-% usage: \xeq[below]{above}
-\newcommand*{\Relbarfill@}{\arrowfill@\Relbar\Relbar\Relbar}
-\newcommand*{\xeq}[2][]{\ext@arrow 0055\Relbarfill@{#1}{#2}}
 
 % for function restriction, differentiation at a point, etc.
 \newcommand{\at}[2]{%
-  {\left.\kern-\nulldelimiterspace#1\right|_{#2}}%
+  { \left.\kern-\nulldelimiterspace#1\right|_{#2} }
 }
 
 % differential symbols
@@ -47,35 +43,41 @@
 
 % By default, the subscript will be too high if it is a capital letter,
 % adding an empty superscript can solve this.
-\newcommand{\@emptySup}{\@ifnextchar^{}{^{}}}
+\newcommand{\@emptySup}{ \@ifnextchar^{}{^{}} }
 
 % absolute value
 \DeclarePairedDelimiter\abs\lvert\rvert
 
 % norm
 \DeclarePairedDelimiter\norm\lVert\rVert
+% the following may be rewritten using xparse
 % \DeclarePairedDelimiterXPP\norm[2]{}\lVert\rVert{
 %   \ifblank{#2}{}{_#2} }{% #2=space
 %   \ifblank{#1}{\:\cdot\:}{#1}% #1=vector
 % }
 
 % inner product
-% usage: \inn{x}{y}; \innerp{x}{y}{space}
-\DeclarePairedDelimiterX\inn[2]\langle\rangle{#1,#2}
-% TODO: rewrite using xparse
-\DeclarePairedDelimiterXPP\@innerp[3]{}\langle\rangle{_{#3}}{#1,#2}
-\newcommand*{\@innerpNoStar}[4][]{\@innerp[#1]{#2}{#3}{#4}\@emptySup}
-\newcommand*{\@innerpStar}[3]{\@innerp*{#1}{#2}{#3}\@emptySup}
-\newcommand*{\innerp}{\@ifstar{\@innerpStar}{\@innerpNoStar}}
+% usage: \inn{x}{y}; \inn[\big]{x}{y}; \inn<space>{x}{y}; \inn[\big]<space>{x}{y}
+%        \inn*{x}{y}; \inn*<space>{x}{y}
+\DeclarePairedDelimiterXPP\@inn[3]{}\langle\rangle{_{#3}}{#1,#2}
+\NewDocumentCommand \inn {s O{} D<>{} m m} {%
+  % #1: the star
+  % #2: size (ignored in the starred version)
+  % #3: the inner product space
+  % #4, #5: the vectors
+  \IfBooleanTF{#1}
+    { \@inn*{#4}{#5}{#3}\@emptySup }
+    { \@inn[#2]{#4}{#5}{#3}\@emptySup }
+}
 
 % set definition (taken from the mathtools doc)
 % usage: \Set{elements}, or \Set{elements \given conditions}
 \providecommand\given{} % the vertical bar in set definitions
 \newcommand\SetSymbol[1][]{%
   \mathchoice{\:}{\:}{\,}{\,}#1\vert
-   \allowbreak
-   \mathchoice{\:}{\:}{\,}{\,}
-   \mathopen{}
+  \allowbreak
+  \mathchoice{\:}{\:}{\,}{\,}
+  \mathopen{}
 }
 \DeclarePairedDelimiterX\Set[1]\{\}{%
   \renewcommand\given{\SetSymbol[\delimsize]}%
