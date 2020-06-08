@@ -13,6 +13,8 @@
 \newcommand{\HH}{\mathbb{H}}
 \newcommand{\OO}{\mathbb{O}}
 \newcommand{\const}{\mathrm{const.}}
+% \newcommand{\vol}{\mathrm{vol}}
+\DeclareMathOperator{\vol}{vol}
 
 % operators
 \renewcommand{\Re}{\operatorname{Re}}
@@ -73,14 +75,14 @@
 % set definition (taken from the mathtools doc)
 % usage: \Set{elements}, or \Set{elements \given conditions}
 \providecommand\given{} % the vertical bar in set definitions
-\newcommand\SetSymbol[1][]{%
-  \mathchoice{\:}{\:}{\,}{\,}#1\vert
+\newcommand\SetSymbol[1]{%
+  \mathchoice{\:}{\:}{\,}{\,}#1
   \allowbreak
   \mathchoice{\:}{\:}{\,}{\,}
   \mathopen{}
 }
 \DeclarePairedDelimiterX\Set[1]\{\}{%
-  \renewcommand\given{\SetSymbol[\delimsize]}%
+  \renewcommand\given[1][\vert]{ \SetSymbol{\delimsize##1} }%
   #1%
 }
 
