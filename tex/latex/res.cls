@@ -200,7 +200,8 @@
 \ExecuteOptions{overlapped,centered}
 \ProcessOptions\relax
 
-\nofiles	     % resume's don't need .aux files
+% commented out since it prevents the use of bibtex
+% \nofiles	     % resume's don't need .aux files
 
 
 \newtoks\tabular@text		    % holds the current list being processed
