@@ -59,6 +59,7 @@
 % }
 
 % inner product
+% \newcommand{\inn}[2]{\left\langle #1,#2 \right\rangle}
 % usage: \inn{x}{y}; \inn[\big]{x}{y}; \inn<space>{x}{y}; \inn[\big]<space>{x}{y}
 %        \inn*{x}{y}; \inn*<space>{x}{y}
 \DeclarePairedDelimiterXPP\@inn[3]{}\langle\rangle{_{#3}}{#1,#2}
@@ -71,6 +72,9 @@
     { \@inn*{#4}{#5}{#3}\@emptySup }
     { \@inn[#2]{#4}{#5}{#3}\@emptySup }
 }
+
+% set definition (simple version)
+% \newcommand{\Set}[2]{\left\{#1\,\middle|\,#2\right\}}
 
 % set definition (taken from the mathtools doc)
 % usage: \Set{elements}, or \Set{elements \given conditions}
